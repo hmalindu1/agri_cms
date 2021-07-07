@@ -38,9 +38,12 @@ function return_x_or_o()
     </table>
         <?php
 if (isset($_GET['id'])) {
-    echo $_GET['id'];
+    echo $_GET['id'] . "<br>";
 } else {
-    echo "ID is not set";
+    echo "ID is not set<br>";
+}
+foreach ($_GET as $key => $val) {
+    echo $key . " = " . $val . "<br>";
 }
 ?>
 </body>
