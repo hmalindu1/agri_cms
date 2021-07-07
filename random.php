@@ -36,6 +36,13 @@ function return_x_or_o()
             <td><?php echo return_x_or_o(); ?></td>
         </tr>
     </table>
+        <?php
+if (isset($_GET['id'])) {
+    echo $_GET['id'];
+} else {
+    echo "ID is not set";
+}
+?>
 </body>
 
 </html>
