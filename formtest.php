@@ -1,18 +1,21 @@
 <?php
-if (isset($_POST['username'])) {
-    $username = $_POST['username'];
-} else {
-    $username = "";
-}
-if (isset($_POST['password'])) {
-    $password = $_POST['password'];
-} else {
-    $password = "";
-}
-echo "SELECT username,password FROM users WHERE useranem='{$username}' AND password='{$password}'";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['username'])) {
+        $username = $_POST['username'];
+    } else {
+        $username = "";
+    }
 
-foreach ($_SERVER as $key => $val) {
-    echo "<br>{$key} = {$val}";
+    if (isset($_POST['password'])) {
+        $password = $_POST['password'];
+    } else {
+        $password = "";
+    }
+    echo "SELECT username,password FROM users WHERE useranem='{$username}' AND password='{$password}'";
+
+    foreach ($_SERVER as $key => $val) {
+        echo "<br>{$key} = {$val}";
+    }
 }
 
 ?>
