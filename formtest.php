@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "SELECT username,password FROM users WHERE useranem='{$username}' AND password='{$password}'";
 
-    foreach ($_SERVER as $key => $val) {
+   /* foreach ($_SERVER as $key => $val) {
         echo "<br>{$key} = {$val}";
-    }
+    }*/
 }
 
 ?>
