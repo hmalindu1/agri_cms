@@ -10,6 +10,11 @@ if (isset($_POST['password'])) {
     $password = "";
 }
 echo "SELECT username,password FROM users WHERE useranem='{$username}' AND password='{$password}'";
+
+foreach ($_SERVER as $key => $val) {
+    echo "<br>{$key} = {$val}";
+}
+
 ?>
 <form action="form_handler.php" method="post">
     Username: <br>
