@@ -1,8 +1,11 @@
 <?php include "includes/init.php"?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    foreach ($_POST as $key => $val) {
-        echo "Key:{$key} - Value: {$val}<br>";
+    try {
+        $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES ('{$_POST['firstname']}', '{$_POST['lastname']}', '{$_POST['username']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['comments']}', 'test', 0, current_date, current_date)";
+        echo $sql;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 } else {
     echo "NO POST DATA INCLUDED";
@@ -48,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                         <input type="password" name="confirm_password" id="confirm-password" tabindex="6" class="form-control" placeholder="Confirm Password" required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="comments" id="comments" tabindex="7" class="form-control" placeholder="Comments" required></textarea>
+                                        <textarea name="comments" id="comments" tabindex="7" class="form-control" placeholder="Comments"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
