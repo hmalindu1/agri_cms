@@ -1,33 +1,33 @@
 body {
     padding-top: 90px;
-    color:saddlebrown;
-    background-color: antiquewhite;
+    color:#313131;
+    background-color: #ffffff;
 }
 
 a:visited {
-    color:saddlebrown;
+    color:#797979;
 }
 a:link {
-    color:darkgoldenrod;
+    color:#c71414;
 }
 a:hover {
-    color:brown;
+    color:#575757;
 }
 .btn-custom {
-    color:saddlebrown;
-    background-color: antiquewhite;
+    color:#dadada;
+    background-color: #5e5e5e;
 }
 nav a:visited {
-    color:beige;
+    color:#f3f3f3;
 }
 nav a:link {
-    color:aliceblue;
+    color:#555555;
 }
 nav a:hover {
-    color:saddlebrown;
+    color:#414141;
 }
 
 .navbar {
-    color:antiquewhite;
-    background-color: saddlebrown;
+    color:#e0e0e0;
+    background-color: #646464;
 }
