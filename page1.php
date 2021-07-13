@@ -23,9 +23,12 @@ echo "Connected to Database";
         <?php
 $result = $pdo->query("SELECT * FROM users");
 if ($result->rowCount() > 0) {
+    echo "<table class=table>";
+    echo "<tr><th>First_Name</th><th>Last_Name</th><th>User_Name</th><th>Password</th></tr>";
     foreach ($result as $row) {
         echo $row['firstname'];
     }
+    echo "</table>";
 } else {
     echo "No users in the users table"; 
 }
