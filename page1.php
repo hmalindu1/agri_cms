@@ -26,11 +26,11 @@ if ($result->rowCount() > 0) {
     echo "<table class=table>";
     echo "<tr><th>First_Name</th><th>Last_Name</th><th>User_Name</th><th>Password</th></tr>";
     foreach ($result as $row) {
-        echo $row['firstname'];
+        echo "<tr><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['username']}</td><td>{$row['password']}</td></tr>";
     }
     echo "</table>";
 } else {
-    echo "No users in the users table"; 
+    echo "No users in the users table";
 }
 ?>
 
