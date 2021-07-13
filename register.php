@@ -2,8 +2,8 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
-        $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES ('{$_POST['firstname']}', '{$_POST['lastname']}', '{$_POST['username']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['comments']}', 'test', 0, current_date, current_date)";
-        echo $sql;
+        $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
+        $stmnt = $pdo -> prepare($sql);
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
