@@ -3,7 +3,10 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
         $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
-        $stmnt = $pdo -> prepare($sql);
+        $stmnt = $pdo->prepare($sql);
+        $user_data = [':firstname' => $_POST['firstname'], ':lastname' => $_POST['lastname'], ':username' => $_POST['username'], ':email' => $_POST['email'], ':password' => $_POST['password'], ':comments' => $_POST['comments']];
+        $stmnt->execute($user_data);
+        echo "User Entered into data base";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
