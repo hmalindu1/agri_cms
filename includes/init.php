@@ -1,4 +1,5 @@
 <?php
+session_start();
 $dsn = "pgsql:host=localhost;dbname=agri_users;port=5432";
 $opt = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
