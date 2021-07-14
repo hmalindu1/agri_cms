@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 $dsn = "pgsql:host=localhost;dbname=agri_users;port=5432";
 $opt = [
