@@ -17,6 +17,9 @@ a:hover {
     color:#dadada;
     background-color: #5e5e5e;
 }
+.btn-custom:hover {
+    color: #ffffff;
+}
 nav a:visited {
     color:#f3f3f3;
 }
