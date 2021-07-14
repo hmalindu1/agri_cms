@@ -48,6 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                         <input type="email" name="email" id="register_email" tabindex="4" class="form-control" placeholder="Email Address" value="" required>
                                     </div>
                                     <div class="form-group">
+                                        <input type="email" name="email_confirm" id="confirm_email" tabindex="4" class="form-control" placeholder="Confirm Email Address" value="" required>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="password" name="password" id="password" tabindex="5" class="form-control" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
