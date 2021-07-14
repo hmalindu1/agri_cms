@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error[] = "Email addresses do not match";
     }
 
-    if (!isset($error)){
+    if (!isset($error)) {
         try {
             $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
             $stmnt = $pdo->prepare($sql);
@@ -52,8 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
-
-
+                <?php
+if (isset($error)) {
+    foreach ($error as $msg) {
+        echo "<p class='bg-danger text-center'>{$msg}</p>";
+    }
+}
+?>
             </div>
         </div>
         <div class="row">
