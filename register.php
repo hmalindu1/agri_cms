@@ -26,16 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error[] = "Email addresses do not match";
     }
 
-    if (!isset($error)) {
-    try {
-        $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
-        $stmnt = $pdo->prepare($sql);
-        $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => $pword, ':comments' => $comments];
-        $stmnt->execute($user_data);
-        // echo "User Entered into data base";
-    } catch (PDOException $e) {
-        // echo "Error: " . $e->getMessage();
+    if (!isset($error)){
+        try {
+            $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
+            $stmnt = $pdo->prepare($sql);
+            $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => $pword, ':comments' => $comments];
+            $stmnt->execute($user_data);
+            // echo "User Entered into data base";
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
+
 } else {
     // echo "NO POST DATA INCLUDED";
 }
