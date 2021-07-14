@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmnt = $pdo->prepare($sql);
         $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => $pword, ':comments' => $comments];
         $stmnt->execute($user_data);
-        echo "User Entered into data base";
+        // echo "User Entered into data base";
     } catch (PDOException $e) {
         // echo "Error: " . $e->getMessage();
     }
