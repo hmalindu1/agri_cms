@@ -1,10 +1,19 @@
 <?php include "includes/init.php"?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $fname = $_POST['firstname'];
+    $lname = $_POST['lastname'];
+    $uname = $_POST['username'];
+    $email = $_POST['email'];
+    $email_conf = $_POST['email_confirm'];
+    $pword = $_POST['password'];
+    $pword_conf = $_POST['password_confirm'];
+    $comments = $_POST['comments'];
+
     try {
         $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
         $stmnt = $pdo->prepare($sql);
-        $user_data = [':firstname' => $_POST['firstname'], ':lastname' => $_POST['lastname'], ':username' => $_POST['username'], ':email' => $_POST['email'], ':password' => $_POST['password'], ':comments' => $_POST['comments']];
+        $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => $pword, ':comments' => $comments];
         $stmnt->execute($user_data);
         echo "User Entered into data base";
     } catch (PDOException $e) {
@@ -54,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                         <input type="password" name="password" id="password" tabindex="5" class="form-control" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="confirm_password" id="confirm-password" tabindex="6" class="form-control" placeholder="Confirm Password" required>
+                                        <input type="password" name="password_confirm" id="confirm-password" tabindex="6" class="form-control" placeholder="Confirm Password" required>
                                     </div>
                                     <div class="form-group">
                                         <textarea name="comments" id="comments" tabindex="7" class="form-control" placeholder="Comments"></textarea>
