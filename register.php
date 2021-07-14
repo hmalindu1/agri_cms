@@ -8,10 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmnt->execute($user_data);
         echo "User Entered into data base";
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        // echo "Error: " . $e->getMessage();
     }
 } else {
-    echo "NO POST DATA INCLUDED";
+    // echo "NO POST DATA INCLUDED";
 }
 ?>
 <!DOCTYPE html>
