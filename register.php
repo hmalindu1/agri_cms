@@ -10,6 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $pword_conf = $_POST['password_confirm'];
     $comments = $_POST['comments'];
 
+    if (strlen($lname) < 3) {
+        $error[] = "Last name must be at least 3 charachters long";
+    }
+    if (strlen($uname) < 6) {
+        $error[] = "USer name must be at least 6 charachters long";
+    }
+    if (strlen($pword) < 6) {
+        $error[] = "Password must be at least 6 charachters long";
+    }
+    if ($pword != $pword_conf) {
+        $error[] = "Password do not match";
+    }
+    if ($email != $email_conf) {
+        $error[] = "Email addresses do not match";
+    }
+
+    if (!isset($error)) {
     try {
         $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, 'test', 0, current_date, current_date)";
         $stmnt = $pdo->prepare($sql);
