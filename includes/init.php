@@ -6,4 +6,4 @@ $opt = [
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
 $pdo = new PDO($dsn, 'postgres', '123', $opt);
-echo "Connected to Database<br>";
+// echo "Connected to Database<br>";
