@@ -53,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmnt = $pdo->prepare($sql);
             $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => $pword, ':comments' => $comments];
             $stmnt->execute($user_data);
+            $_SESSION['message'] = "User successfully registered!";
+            header("Location: index.php");
             // echo "User Entered into data base";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
