@@ -9,3 +9,4 @@ $opt = [
 ];
 $pdo = new PDO($dsn, 'postgres', '123', $opt);
 // echo "Connected to Database<br>";
+include "php_functions.php";
