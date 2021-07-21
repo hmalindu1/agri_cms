@@ -21,7 +21,7 @@ try {
     $pdo = new PDO($dsn, $user, $pass, $opt);
 } catch (PDOException $e) {
     //throw $th;
-    echo "Error: " . $e->getMessage() . "</br>";
+    echo "Error: " . $e->getMessage() . "<br>";
     echo "Line Number: " . $e->getLine();
 
 }
