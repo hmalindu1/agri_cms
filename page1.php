@@ -29,7 +29,8 @@ try {
         echo "No users in the users table";
     }
 } catch (PDOException $e) {
-    echo "Oops! There was an Error <br><br>" . $e->getMessage();
+    echo "Oops! There was an Error <br><br>" . $e->getMessage() . "<br>";
+    echo "Line Number: " . $e->getLine();
 }
 ?>
 
