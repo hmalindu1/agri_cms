@@ -15,6 +15,15 @@ $opt = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
-$pdo = new PDO($dsn, 'postgres', '123', $opt);
+
+try {
+    //code...
+    $pdo = new PDO($dsn, $user, $pass, $opt);
+} catch (PDOException $e) {
+    //throw $th;
+    echo "Error: " . $e->getMessage() . "</br>";
+    echo "Line Number: " . $e->getLine();
+
+}
 // echo "Connected to Database<br>";
 include "php_functions.php";
