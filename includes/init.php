@@ -1,7 +1,15 @@
 <?php
 ob_start();
 session_start();
-$dsn = "pgsql:host=localhost;dbname=agri_users;port=5432";
+
+$host = 'localhost';
+$db = 'agri_users';
+$user = 'postgres';
+$pass = '123';
+$port = '5432';
+
+$dsn = "pgsql:host=$host;dbname=$db;port=$port";
+
 $opt = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
