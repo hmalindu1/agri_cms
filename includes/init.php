@@ -26,4 +26,7 @@ try {
 
 }
 // echo "Connected to Database<br>";
+$from_email = "admin@imgenv.com";
+$reply_email = "admin@imgenv.com";
+
 include "php_functions.php";
