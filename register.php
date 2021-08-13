@@ -60,8 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmnt = $pdo->prepare($sql);
             $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => password_hash($pword, PASSWORD_BCRYPT), ':comments' => $comments, ':vcode' => generate_token()];
             $stmnt->execute($user_data);
-            $_SESSION['message'] = "User successfully registered!";
-            redirect("index.php");
+            /*$_SESSION['message'] = "User successfully registered!";
+            redirect("index.php");*/
+
+            $body = "<p>Please click on the link below to activate your account</p><p><a href='activate.php?user={$uname}&code={$vcode}'>Activate Account</a></p>";
+            send_mail($email, "Activate User", $body, $from_email, $reply_email);
             // echo "User Entered into data base";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
