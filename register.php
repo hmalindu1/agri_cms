@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // }
 
     if (!isset($error)) {
+        $vcode = generate_token();
         try {
             $sql = "INSERT INTO users (firstname, lastname, username, email, password, comments, validationcode, active, joined, last_login) VALUES (:firstname, :lastname, :username, :email, :password, :comments, :vcode, 0, current_date, current_date)";
             $stmnt = $pdo->prepare($sql);
