@@ -61,8 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $stmnt = $pdo->prepare($sql);
             $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => password_hash($pword, PASSWORD_BCRYPT), ':comments' => $comments, ':vcode' => $vcode];
             $stmnt->execute($user_data);
-            /*$_SESSION['message'] = "User successfully registered!";
-            redirect("index.php");*/
 
             $body = "<p>Please click on the link below to activate your account</p><p><a href='activate.php?user={$uname}&code={$vcode}'>Activate Account</a></p>";
             send_mail($email, "Activate User", $body, $from_email, $reply_email);
@@ -95,9 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <?php
+show_msg();
 if (isset($error)) {
     foreach ($error as $msg) {
-        echo "<p class='bg-danger text-center'>{$msg}</p>";
+        echo "<h4 class='bg-danger text-center'>{$msg}</h4>";
     }
 }
 ?>
