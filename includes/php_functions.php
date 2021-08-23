@@ -6,7 +6,7 @@ function redirect($loc)
 
 function generate_token()
 {
-    return md5(microtime() . mt_rand()); //Refer core PHP Programming book
+    return md5(microtime() . mt_rand());
 }
 
 function count_field_val($pdo, $tbl, $fld, $val)
@@ -15,7 +15,7 @@ function count_field_val($pdo, $tbl, $fld, $val)
         $sql = "SELECT {$fld} FROM {$tbl} WHERE {$fld}=:value";
         $stmnt = $pdo->prepare($sql);
         $stmnt->execute([':value' => $val]);
-        return $stmnt->rowCount(); // get number of affected rows 'rowCount()'
+        return $stmnt->rowCount();
     } catch (PDOException $e) {
         return $e->getMessage();
     }
@@ -23,23 +23,20 @@ function count_field_val($pdo, $tbl, $fld, $val)
 
 function send_mail($to, $subject, $body, $from, $reply)
 {
-    $headers = "From: {$from}" . "\r\n" . "Reply-To: {$reply}" . "\r\n" . "X-Mailer:PHP/" . phpversion();
+    $headers = "From: {$from}" . "\r\n" . "Reply-To: {$reply} " . " \r\n " . "X-Mailer: PHP/" . phpversion();
     if ($_SERVER['SERVER_NAME'] != "localhost") {
-        # code...
         mail($to, $subject, $body, $headers);
     } else {
-        # code...
-        echo "<hr><p>To: {$to}</p><p>Subject: {$subject}</p><p>{$body}</p><p>" . $headers . "</p></hr>";
+        echo "<hr><p>To: {$to}</p><p>Subject: {$subject}</p><p>{$body}</p><p>" . $headers . "</p><hr>";
     }
 }
 
-function get_validationcode($user)
+function get_validationcode($user, $pdo)
 {
     try {
-        $sql = "SELECT validationcode FROM users WHERE username=:username";
-        $stmnt = $pdo->prepare($sql);
+        $stmnt = $pdo->prepare("SELECT validationcode FROM users WHERE username=:username");
         $stmnt->execute([':username' => $user]);
-        $row = $stmnt -> fecth();
+        $row = $stmnt->fetch();
         return $row['validationcode'];
     } catch (PDOException $e) {
         return $e->getMessage();
