@@ -4,11 +4,12 @@ if (isset($_GET['user'])) {
     $user = $_GET['user'];
     if (isset($_GET['code'])) {
         $code = $_GET['code'];
-        $db_code = get_validationcode($user);
+        $db_code = get_validationcode($user, $pdo);
         if ($code == $db_code) {
             $_SESSION['message'] = "Codes match, activating user";
+            redirect('index.php');
         } else {
-            $_SESSION['message'] = "Validation code does not match the database";
+            $_SESSION['message'] = "Validation code does not match the database - '{$db_code}'='{$code}'";
             redirect('index.php');
         }
 
