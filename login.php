@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $user_data['password'])) {
                 set_msg("Logged in successfully", "success");
                 $_SESSION['username'] = $username;
-                redirect("mycontent.php");
+                // redirect("mycontent.php");
             } else {
                 set_msg("Password is invalid");
             }
