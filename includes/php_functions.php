@@ -29,6 +29,20 @@ function show_msg()
     }
 }
 
+function send_mail($to, $subject, $body, $from, $reply)
+{
+    $headers = "From: {$from}" . "\r\n" . "Reply-To: {$reply} " . " \r\n " . "X-Mailer: PHP/" . phpversion();
+    if ($_SERVER['SERVER_NAME'] != "localhost") {
+        mail($to, $subject, $body, $headers);
+        set_msg("Email sent to '{$to}'. Please check email to activate your account");
+        redirect('index.php');
+    } else {
+        echo "<hr><p>To: {$to}</p><p>Subject: {$subject}</p><p>{$body}</p><p>" . $headers . "</p><hr>";
+    }
+}
+
+//   ******************  DATABASE FUNCTIONS  ********************************
+
 function count_field_val($pdo, $tbl, $fld, $val)
 {
     try {
@@ -41,13 +55,15 @@ function count_field_val($pdo, $tbl, $fld, $val)
     }
 }
 
-function send_mail($to, $subject, $body, $from, $reply)
+function return_field_data($pdo, $tbl, $fld, $val)
 {
-    $headers = "From: {$from}" . "\r\n" . "Reply-To: {$reply} " . " \r\n " . "X-Mailer: PHP/" . phpversion();
-    if ($_SERVER['SERVER_NAME'] != "localhost") {
-        mail($to, $subject, $body, $headers);
-    } else {
-        echo "<hr><p>To: {$to}</p><p>Subject: {$subject}</p><p>{$body}</p><p>" . $headers . "</p><hr>";
+    try {
+        $sql = "SELECT * FROM {$tbl} WHERE {$fld}=:value";
+        $stmnt = $pdo->prepare($sql);
+        $stmnt->execute([':value' => $val]);
+        return $stmnt->fetch();
+    } catch (PDOException $e) {
+        return $e->getMessage();
     }
 }
 
