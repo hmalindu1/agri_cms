@@ -3,6 +3,12 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    if (isset($_POST['remember'])) {
+        $remember = "on";
+    } else {
+        $remember = "off";
+    }
+    echo "Remember = '{$remember}'";
     if (count_field_val($pdo, "users", "username", $username) > 0) {
         $user_data = return_field_data($pdo, "users", "username", $username);
         if ($user_data['active'] == 1) {
