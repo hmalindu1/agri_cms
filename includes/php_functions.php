@@ -9,6 +9,21 @@ function generate_token()
     return md5(microtime() . mt_rand());
 }
 
+function logged_in(){
+    if (isset($_SESSION['username'])) {
+        return true;
+    } else {
+        if (isset($_COOKIE['username'])) {
+            $username = $_COOKIE['username'];
+            $_SESSION['username'] = $_COOKIE['username'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+
 function set_msg($msg, $level = 'danger')
 {
     if (($level != 'primary') && ($level != 'success') && ($level != 'info') && ($level != 'warning')) {
