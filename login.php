@@ -8,13 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $remember = "off";
     }
-    echo "Remember = '{$remember}'";
     if (count_field_val($pdo, "users", "username", $username) > 0) {
         $user_data = return_field_data($pdo, "users", "username", $username);
         if ($user_data['active'] == 1) {
             if (password_verify($password, $user_data['password'])) {
                 set_msg("Logged in successfully", "success");
                 $_SESSION['username'] = $username;
+                if ($remember = "on") {
+                    setcookie("username", $username, time() + 86400);
+                }
                 // redirect("mycontent.php");
             } else {
                 set_msg("Password is invalid");
