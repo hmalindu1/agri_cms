@@ -1,11 +1,16 @@
 <?php include "includes/init.php"?>
 <?php
-    if (isset($_SESSION['username'])) {
-        $username=$_SESSION['username'];
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    if (isset($_COOKIE['username'])) {
+        $username = $_COOKIE['username'];
+        $_SESSION['username'] = $_COOKIE['username'];
     } else {
         redirect('index.php');
     }
-    
+}
+
 ?>
 
 <!DOCTYPE html>
