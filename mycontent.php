@@ -1,13 +1,13 @@
 <?php include "includes/init.php"?>
 <?php
-if (isset($_SESSION['username'])) {
+if (logged_in()) {
     $username = $_SESSION['username'];
 } else {
     if (isset($_COOKIE['username'])) {
         $username = $_COOKIE['username'];
         $_SESSION['username'] = $_COOKIE['username'];
     } else {
-        redirect('index.php');
+    redirect('index.php');
     }
 }
 
