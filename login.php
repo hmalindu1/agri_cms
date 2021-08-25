@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($remember = "on") {
                     setcookie("username", $username, time() + 86400);
                 }
-                // redirect("mycontent.php");
+                redirect("mycontent.php");
             } else {
                 set_msg("Password is invalid");
             }
