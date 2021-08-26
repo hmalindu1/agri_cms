@@ -26,6 +26,7 @@ try {
 
 }
 // echo "Connected to Database<br>";
+$root_directory = "login_course";
 $from_email = "admin@imgenv.com";
 $reply_email = "admin@imgenv.com";
 
