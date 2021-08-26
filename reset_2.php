@@ -23,13 +23,13 @@ if ($_GET['user']) {
     redirect("index.php");
 }
 
-if ($_SERVER['REQUEST_METHOD']=="POST") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
         $password = $_POST['password'];
         $pword_confirm = $_POST['password_confirm'];
-        if ($password==$pword_confirm) {
-            $stmnt=$pdo->prepare("UPDATE users SET passwrod=:password WHERE username = :username");
-            $user_data=[':password'=>password_hash($password,PASSWORD_BCRYPT), ':username'=>$username];
+        if ($password == $pword_confirm) {
+            $stmnt = $pdo->prepare("UPDATE users SET password=:password WHERE username=:username");
+            $user_data = [':password' => password_hash($password, PASSWORD_BCRYPT), ':username' => $username];
             $stmnt->execute($user_data);
             set_msg("Password successfully updated. Please log in");
             redirect("login.php");
@@ -37,10 +37,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             set_msg("Password don't match");
         }
     } catch (PDOException $e) {
-        echo "Error: " . $e -> getMessage();
+        echo "Error: " . $e->getMessage();
     }
-} 
-
+}
 
 ?>
 <!DOCTYPE html>
