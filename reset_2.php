@@ -8,19 +8,19 @@ if ($_GET['user']) {
             $row = return_field_data($pdo, "users", "username", $username);
             if ($vcode != $row['validationcode']) {
                 set_msg("Validation code does not match database");
-                // redirect("index.php");
+                redirect("index.php");
             }
         } else {
             set_msg("User '{$username}' not found in database");
-            // redirect("index.php");
+            redirect("index.php");
         }
     } else {
         set_msg("No validation code included with reset request");
-        // redirect("index.php");
+        redirect("index.php");
     }
 } else {
     set_msg("No user included with reset request");
-    // redirect("index.php");
+    redirect("index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -35,11 +35,6 @@ if ($_GET['user']) {
             <div class="col-lg-6 col-lg-offset-3">
                 <?php
 show_msg();
-if (isset($error)) {
-    foreach ($error as $msg) {
-        echo "<h4 class='bg-danger text-center'>{$msg}</h4>";
-    }
-}
 ?>
             </div>
         </div>
