@@ -26,7 +26,7 @@ try {
 
 }
 // echo "Connected to Database<br>";
-$root_directory = "login_course";
+$root_directory = "agri_cms";
 $from_email = "admin@imgenv.com";
 $reply_email = "admin@imgenv.com";
 
