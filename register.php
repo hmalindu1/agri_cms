@@ -62,8 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user_data = [':firstname' => $fname, ':lastname' => $lname, ':username' => $uname, ':email' => $email, ':password' => password_hash($pword, PASSWORD_BCRYPT), ':comments' => $comments, ':vcode' => $vcode];
             $stmnt->execute($user_data);
 
-            $body = "<p>Please click on the link below to activate your account</p><p><a href='activate.php?user={$uname}&code={$vcode}'>Activate Account</a></p>";
+            $body = "Please go to http://{$_SERVER['SERVER_NAME']}/{$root_directory}/activate.php?user={$uname}&code={$vcode} in order to activate your account";
             send_mail($email, "Activate User", $body, $from_email, $reply_email);
+
             // echo "User Entered into data base";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
