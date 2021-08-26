@@ -6,10 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     if (count_field_val($pdo, "users", "username", $username) > 0) {
         $row = return_field_data($pdo, "users", "username", $username);
-        $body = "<p>Please click on the link below to reset your password</p><p><a href='reset_2.php?user={$username}&code={$row['validationcode']}'>Activate Account</a></p>";
-        send_mail($row['email'], "Reset password", $body, $from_email, $reply_email);
+        $body = "Please go to http://{$_SERVER['SERVER_NAME']}/{$root_directory}/reset_2.php?user={$username}&code={$row['validationcode']} in order to reset your password";
+        send_mail($row['email'], "Reset Password", $body, $from_email, $reply_email);
     } else {
-        set_msg("User '{$username}' was not found in the data base!");
+        set_msg("User '{$username}' was not found in the database");
     }
 }
 ?>
