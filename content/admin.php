@@ -1,9 +1,9 @@
-<?php include("../includes/init.php");?>
+<?php include "../includes/init.php";?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php include "../includes/header.php" ?>
+    <?php include "../includes/header.php"?>
     <body>
-        <?php include "../includes/nav.php" ?>
+        <?php include "../includes/nav.php"?>
 
         <div class="container">
             <h1 class="text-center">Admin</h1>
@@ -21,7 +21,7 @@
                 <a href='admin_add_page.php' class="btn btn-success">Add Page</a>
             </div>
         </div> <!--Container-->
-        <?php include "../includes/footer.php" ?>
+        <?php include "../includes/footer.php"?>
         <script>
             gotoTab("users");
             $(".tab-label").click(function(){
