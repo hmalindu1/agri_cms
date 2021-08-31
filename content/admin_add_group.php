@@ -1,13 +1,46 @@
-<?php include("../includes/init.php");?>
+<?php include "../includes/init.php";?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $descr = $_POST['descr'];
+    if (strlen($name) < 3) {
+        $error[] = "Group name must be at least 3 characters";
+    }
+    if (!isset($error)) {
+        try {
+            $stmnt = $pdo->prepare("INSERT INTO groups (name,descr) VALUES (:name,:descr)");
+            $stmnt->execute([":name" => $name, ":descr" => $descr]);
+            set_msg("Group '{$name}' has been added", "seccess");
+            redirect("admin.php?tab=groups");
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+} else {
+    # code...
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php include "../includes/header.php" ?>
+    <?php include "../includes/header.php"?>
     <body>
-        <?php include "../includes/nav.php" ?>
+        <?php include "../includes/nav.php"?>
 
         <div class="container">
+            <?php
+show_msg();
+?>
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3">
+                    <?php
+if (isset($error)) {
+    foreach ($error as $msg) {
+        echo "<h4 class='bg-danger text-center'>{$msg}</h4>";
+    }
+}
+?>
                 </div>
             </div>
             <div class="row">
@@ -38,6 +71,6 @@
                 </div>
             </div>
         </div>
-        <?php include "../includes/footer.php" ?>
+        <?php include "../includes/footer.php"?>
     </body>
 </html>
