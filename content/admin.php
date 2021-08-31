@@ -83,7 +83,11 @@ try {
         </div> <!--Container-->
         <?php include "../includes/footer.php"?>
         <script>
-            gotoTab("users");
+            if (getParameterByName("tab")){
+                gotoTab(getParameterByName("tab"));
+            } else {
+                gotoTab("users");
+            }
             $(".tab-label").click(function(){
                 gotoTab($(this).attr('id'));
             });
