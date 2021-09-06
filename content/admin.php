@@ -69,7 +69,8 @@ try {
         echo "<table class=table>";
         echo "<tr><th>ID</th><th>Name</th><th>URL</th><th>Group Name</th><th>Description</th></tr>";
         foreach ($result as $row) {
-            echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['url']}</td><td>{$row['group_id']}</td><td>{$row['descr']}</td></tr>";
+            $group_row = return_field_data($pdo, "groups", "id", $row['group_id']);
+            echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['url']}</td><td>{$group_row['name']}</td><td>{$row['descr']}</td></tr>";
         }
         echo "</table>";
     } else {
