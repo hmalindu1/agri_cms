@@ -68,7 +68,17 @@ if (isset($error)) {
                                             <input type="text" name="url" id="url" tabindex="2" class="form-control" placeholder="Page URL" value="<?php echo $url ?>" required >
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="group_id" id="group_id" tabindex="3" class="form-control"  placeholder="Group ID" value="<?php echo $group_id ?>" required >
+                                            <select name="group_id" id="group_id" class="form-control" required >
+                                                <?php
+try {
+    $result = $pdo->query("SELECT id, name FROM groups ORDER BY name");
+    foreach ($result as $row) {
+        echo "<option value={$row['id']}>{$row['name']}</option>";
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}?>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <textarea name="descr" id="descr" tabindex="8" class="form-control" placeholder="Description - Tell us about your organization ?"><?php echo $descr ?></textarea>
