@@ -15,10 +15,10 @@
             <div id='tab-users' class='tab-content'>
                 <?php
 try {
-    $result = $pdo->query("SELECT firstname, lastname, username, email, active, joined, last_login FROM users");
+    $result = $pdo->query("SELECT id,firstname, lastname, username, email, active, joined, last_login FROM users");
     if ($result->rowCount() > 0) {
         echo "<table class=table>";
-        echo "<tr><th>First_Name</th><th>Last_Name</th><th>User_Name</th><th>Email</th><th>Active</th><th>Joined</th><th>Last login</th></tr>";
+        echo "<tr><th>ID</th><th>First_Name</th><th>Last_Name</th><th>User_Name</th><th>Email</th><th>Active</th><th>Joined</th><th>Last login</th></tr>";
         foreach ($result as $row) {
             if ($row['active']) {
                 $active = "yes";
@@ -26,7 +26,7 @@ try {
                 $active = "No";
             }
 
-            echo "<tr><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['username']}</td><td>{$row['email']}</td><td>{$active}</td><td>{$row['joined']}</td><td>{$row['last_login']}</td></tr>";
+            echo "<tr><td>{$row['id']}</td><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['username']}</td><td>{$row['email']}</td><td>{$active}</td><td>{$row['joined']}</td><td>{$row['last_login']}</td></tr>";
         }
         echo "</table>";
     } else {
