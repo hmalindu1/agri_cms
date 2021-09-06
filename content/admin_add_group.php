@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $stmnt = $pdo->prepare("INSERT INTO groups (name,descr) VALUES (:name,:descr)");
             $stmnt->execute([":name" => $name, ":descr" => $descr]);
-            set_msg("Group '{$name}' has been added", "seccess");
+            set_msg("Group '{$name}' has been added", "success");
             redirect("admin.php?tab=groups");
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $stmnt = $pdo->prepare("INSERT INTO pages (name,descr,url,group_id) VALUES (:name,:descr,:url,:group_id)");
             $stmnt->execute([":name" => $name, ":descr" => $descr, ":url" => $url, ":group_id" => $group_id]);
-            set_msg("Page '{$name}' has been added", "seccess");
+            set_msg("Page '{$name}' has been added", "success");
             redirect("admin.php?tab=pages");
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
