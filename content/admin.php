@@ -67,7 +67,7 @@ try {
     $result = $pdo->query("SELECT id, name, url, group_id, descr FROM pages ORDER BY name");
     if ($result->rowCount() > 0) {
         echo "<table class=table>";
-        echo "<tr><th>ID</th><th>Name</th><th>URL</th><th>Group ID</th><th>Description</th></tr>";
+        echo "<tr><th>ID</th><th>Name</th><th>URL</th><th>Group Name</th><th>Description</th></tr>";
         foreach ($result as $row) {
             echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['url']}</td><td>{$row['group_id']}</td><td>{$row['descr']}</td></tr>";
         }
