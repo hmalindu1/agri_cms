@@ -44,9 +44,11 @@ try {
     $result = $pdo->query("SELECT id, name, descr  FROM groups ORDER BY name");
     if ($result->rowCount() > 0) {
         echo "<table class=table>";
-        echo "<tr><th>ID</th><th>Name</th><th>Description</th></tr>";
+        echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Users</th><th>Pages</th></tr>";
         foreach ($result as $row) {
-            echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['descr']}</td></tr>";
+            $user_count = count_field_val($pdo, "user_group_link", "group_id", $row['id']);
+            $page_count = count_field_val($pdo, "pages", "group_id", $row['id']);
+            echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['descr']}</td><td>{$user_count}</td><td>{$page_count}</td><td><a href='admin_manage_users.php?id={$row['id']}'>Manage Users</a></td></tr>";
         }
         echo "</table>";
     } else {
