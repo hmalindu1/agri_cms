@@ -19,8 +19,35 @@ if (logged_in()) {
 show_msg();
 ?>
             <h1 class="text-center"><?php echo $username ?>'s content</h1>
-            <p>"Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-        </div> <!--Container-->
+                    <?php
+try {
+    $sql = "SELECT u.username, g.name AS group_name, g.descr AS group_descr, p.name AS page_name, p.descr AS page_descr, p.url ";
+    $sql .= "FROM users u ";
+    $sql .= "JOIN user_group_link gu ON u.id = gu.user_id ";
+    $sql .= "JOIN groups g ON gu.group_id = g.id ";
+    $sql .= "JOIN pages p ON g.id = p.group_id ";
+    $sql .= "WHERE username = '{$username}' ";
+    $sql .= "ORDER BY group_name";
+    $result = $pdo->query($sql);
+    if ($result->rowCount() > 0) {
+        $prev_group = " ";
+        echo "<table class=table>";
+        foreach ($result as $row) {
+            if ($prev_group != $row['group_name']) {
+                echo "<tr><td>{$row['group_name']}</td><td>{$row['group_descr']}</td></tr>";
+            }
+            echo "<tr><td> </td><td><a href='content/{$row['url']}'>{$row['page_name']}</a></td><td>{$row['page_descr']}</td></tr>";
+            $prev_group = $row['group_name'];
+        }
+        echo "</table>";
+    } else {
+        echo "<h4>No content available for {$username}</h4>";
+    }
+} catch (PDOException $e) {
+    echo "Oops! There was an Error <br><br>" . $e->getMessage() . "<br>";
+    echo "Line Number: " . $e->getLine();
+}
+?></div> <!--Container-->
 
         <?php include "includes/footer.php"?>
     </body>
