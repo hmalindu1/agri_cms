@@ -9,7 +9,8 @@ function generate_token()
     return md5(microtime() . mt_rand());
 }
 
-function logged_in(){
+function logged_in()
+{
     if (isset($_SESSION['username'])) {
         return true;
     } else {
