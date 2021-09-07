@@ -24,7 +24,6 @@ function logged_in()
     }
 }
 
-
 function set_msg($msg, $level = 'danger')
 {
     if (($level != 'primary') && ($level != 'success') && ($level != 'info') && ($level != 'warning')) {
