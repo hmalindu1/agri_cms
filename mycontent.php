@@ -35,7 +35,7 @@ try {
         echo "<table class=table>";
         foreach ($result as $row) {
             if ($prev_group != $row['group_name']) {
-                echo "<tr><td>{$row['group_name']}</td><td>{$row['group_descr']}</td></tr>";
+                echo "<tr class='tbl-group-head'><td>{$row['group_name']}</td><td>{$row['group_descr']}</td><td></td></tr>";
             }
             echo "<tr><td> </td><td><a href='content/{$row['url']}'>{$row['page_name']}</a></td><td>{$row['page_descr']}</td></tr>";
             $prev_group = $row['group_name'];
