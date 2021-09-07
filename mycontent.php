@@ -3,6 +3,7 @@
 if (logged_in()) {
     $username = $_SESSION['username'];
 } else {
+    set_msg("Please log-in and try again");
     redirect('index.php');
 }
 
