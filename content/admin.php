@@ -32,13 +32,15 @@ try {
         echo "<table class=table>";
         echo "<tr><th>ID</th><th>First_Name</th><th>Last_Name</th><th>User_Name</th><th>Email</th><th>Active</th><th>Joined</th><th>Last login</th></tr>";
         foreach ($result as $row) {
-            if ($row['active']) {
+            if ($row['active']==1) {
                 $active = "yes";
+                $action = "Deactivate";
             } else {
                 $active = "No";
+                $action = "Activate";
             }
 
-            echo "<tr><td>{$row['id']}</td><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['username']}</td><td>{$row['email']}</td><td>{$active}</td><td>{$row['joined']}</td><td>{$row['last_login']}</td></tr>";
+            echo "<tr><td>{$row['id']}</td><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['username']}</td><td>{$row['email']}</td><td>{$active}</td><td>{$row['joined']}</td><td>{$row['last_login']}</td><td><a href='admin_deactivate_users.php?id={$row['id']}'>{$action}</a></td></tr>";
         }
         echo "</table>";
     } else {
