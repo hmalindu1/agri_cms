@@ -98,7 +98,14 @@ try {
         echo "<tr><th>ID</th><th>Name</th><th>URL</th><th>Group Name</th><th>Description</th></tr>";
         foreach ($result as $row) {
             $group_row = return_field_data($pdo, "groups", "id", $row['group_id']);
-            echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['url']}</td><td>{$group_row['name']}</td><td>{$row['descr']}</td></tr>";
+            echo "<tr><td>{$row['id']}</td>
+            <td>{$row['name']}</td>
+            <td>{$row['url']}</td>
+            <td>{$group_row['name']}</td>
+            <td>{$row['descr']}</td>
+            <td><a class='confirm-delete' href='admin_delete.php?id={$row['id']}&tbl=pages'>Delete</a></td>
+            <td><a href='admin_edit_page.php?id={$row['id']}'>Edit</a></td>
+            </tr>";
         }
         echo "</table>";
     } else {
