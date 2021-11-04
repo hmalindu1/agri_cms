@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error[] = "Last name must be at least 3 charachters long";
     }
     if (strlen($uname) < 6) {
-        $error[] = "USer name must be at least 6 charachters long";
+        $error[] = "User name must be at least 6 charachters long";
     }
     if (strlen($pword) < 6) {
         $error[] = "Password must be at least 6 charachters long";
