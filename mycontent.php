@@ -41,6 +41,9 @@ try {
             $prev_group = $row['group_name'];
         }
         echo "</table>";
+        $row=return_field_data($pdo,"users","username",$username);
+        $user_id=$row['id'];
+        echo "<a class='btn btn-custom' href='content/admin_edit_users.php?id={$user_id}'>Edit Profile Information</a>";
     } else {
         echo "<h4>No content available for {$username}</h4>";
     }
