@@ -121,6 +121,10 @@ try {
         </div> <!--Container-->
         <?php include "../includes/footer.php"?>
         <script>
+            $(".confirm-delete").click(function(e)  {
+                if(!confirm("Are you sure you want to delete this record?"))
+                e.preventDefault(); 
+            });
             if (getParameterByName("tab")){
                 gotoTab(getParameterByName("tab"));
             } else {
