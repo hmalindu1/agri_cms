@@ -48,10 +48,11 @@ try {
         echo "<h4>No content available for {$username}</h4>";
     }
 } catch (PDOException $e) {
-    echo "Oops! There was an Error <br><br>" . $e->getMessage() . "<br>";
+    echo "There was an Error <br><br>" . $e->getMessage() . "<br>";
     echo "Line Number: " . $e->getLine();
 }
-?></div> <!--Container-->
+?>
+</div> <!--Container-->
 
         <?php include "includes/footer.php"?>
     </body>
