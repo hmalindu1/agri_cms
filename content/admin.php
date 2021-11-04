@@ -40,7 +40,14 @@ try {
                 $action = "Activate";
             }
 
-            echo "<tr><td>{$row['id']}</td><td>{$row['firstname']}</td><td>{$row['lastname']}</td><td>{$row['username']}</td><td>{$row['email']}</td><td>{$active}</td><td>{$row['joined']}</td><td>{$row['last_login']}</td><td><a href='admin_deactivate_users.php?id={$row['id']}'>{$action}</a></td></tr>";
+            echo "<tr><td>{$row['id']}</td><td>{$row['firstname']}</td>
+            <td>{$row['lastname']}</td><td>{$row['username']}</td>
+            <td>{$row['email']}</td><td>{$active}</td>
+            <td>{$row['joined']}</td>
+            <td>{$row['last_login']}</td>
+            <td><a href='admin_deactivate_users.php?id={$row['id']}'>{$action}</a></td>
+            <td><a href='admin_edit_users.php?id={$row['id']}'>Edit</a></td>
+            <td><a class='confirm-delete' href='admin_delete.php?id={$row['id']}&tbl=users'>Delete</a></td></tr>";
         }
         echo "</table>";
     } else {
