@@ -33,3 +33,4 @@ if (isset($_GET['id'])) {
 } else {
     redirect('admin.php');
 }
+?>
