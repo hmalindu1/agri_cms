@@ -69,7 +69,14 @@ try {
         foreach ($result as $row) {
             $user_count = count_field_val($pdo, "user_group_link", "group_id", $row['id']);
             $page_count = count_field_val($pdo, "pages", "group_id", $row['id']);
-            echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['descr']}</td><td>{$user_count}</td><td>{$page_count}</td><td><a href='admin_manage_users.php?id={$row['id']}'>Manage Users</a></td></tr>";
+            echo "<tr><td>{$row['id']}</td>
+            <td>{$row['name']}</td>
+            <td>{$row['descr']}</td>
+            <td>{$user_count}</td>
+            <td>{$page_count}</td>
+            <td><a href='admin_manage_users.php?id={$row['id']}'>Manage Users</a></td>
+            <td><a href='admin_edit_group.php?id={$row['id']}'>Edit</a></td>
+            </tr>";
         }
         echo "</table>";
     } else {
